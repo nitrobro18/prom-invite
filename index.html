@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prom Date Invitation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: pink;
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      flex-direction: column;
+    }
+    .page {
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .active {
+      display: flex;
+    }
+    h1 {
+      font-size: 2.5rem;
+    }
+    input {
+      padding: 10px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      margin-top: 10px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border: none;
+      border-radius: 5px;
+      background-color: white;
+      color: pink;
+      cursor: pointer;
+      margin: 10px;
+    }
+    button:hover {
+      background-color: #ffcccb;
+    }
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+    #catImage1, #catImage2, #catJump {
+      width: 300px;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div id="page1" class="page active">
+    <h1>Welcome!</h1>
+    <p>Please enter your first name:</p>
+    <input type="text" id="firstName" placeholder="Your First Name">
+    <button onclick="confirmName()">Confirm</button>
+  </div>
+
+  <div id="page2" class="page">
+    <div class="image-container">
+      <img id="catImage1" src="https://assets.onecompiler.app/437fmr2ub/437fmptb8/cat-and-flower.png" alt="Cute Cat with Flower">
+    </div>
+    <h1 id="greeting"></h1>
+    <p>Would you like to be my date to prom and go with me?</p>
+    <button onclick="showPage('page3')">Yes</button>
+    <button onclick="hideImageAndShowPage('page4')">No</button>
+  </div>
+
+  <div id="page3" class="page">
+    <h1>YAYAY YOU MADE MY WORLD TODAY!!!</h1>
+    <div class="image-container">
+      <img id="catJump" src="https://assets.onecompiler.app/437fmr2ub/437fprryt/cat-jump.gif" alt="Jumping Cat">
+    </div>
+    <button onclick="showPage('page1')">Return to Start</button>
+  </div>
+
+  <div id="page4" class="page">
+    <div class="image-container">
+      <img id="catImage2" src="https://assets.onecompiler.app/437fmr2ub/437fp8k7u/ce99e8383876d81bdc0712ed79193afe.png" alt="Another Cute Cat with Flower">
+    </div>
+    <h1>Are you sure?</h1>
+    <button onclick="showPageWithImage('page2')">No</button>
+    <button onclick="showPageWithImage('page2')">No</button>
+  </div>
+
+  <script>
+    function showPage(pageId) {
+      document.querySelectorAll('.page').forEach(page => {
+        page.classList.remove('active');
+      });
+      document.getElementById(pageId).classList.add('active');
+    }
+
+    function confirmName() {
+      const firstName = document.getElementById("firstName").value;
+      if (firstName.trim() === "") {
+        alert("Please enter your first name!");
+        return;
+      }
+      document.getElementById("greeting").innerText = `Hey, ${firstName}!`;
+      showPage('page2');
+    }
+
+    function hideImageAndShowPage(pageId) {
+      document.getElementById("catImage1").style.display = "none";
+      showPage(pageId);
+    }
+
+    function showPageWithImage(pageId) {
+      showPage(pageId);
+      document.getElementById("catImage1").style.display = "block";
+    }
+  </script>
+</body>
+</html>
